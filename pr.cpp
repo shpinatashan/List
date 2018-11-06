@@ -16,7 +16,7 @@ struct Node
 Node* Create_Node (int value);
 Node* Insert_Node (Node* cur, int value);
 Node* Search_Node (Node* cur, int value);
-int   Indexx_Node (Node* cur);
+int   Indexx_Node (Node* cur, Node* list_ptr);
 void  Printf_Node (Node* list_ptr);
 void  Delete_Node (Node* cur);
 void  Swap___Node (Node* ptr1, Node* ptr2);
@@ -25,13 +25,17 @@ void  Swap___Node (Node* ptr1, Node* ptr2);
 
 int main()
 {
-Node* list_ptr = Create_Node (4);
-Node* cur = list_ptr;
-int k = 0;
+printf(" Hey ");
+
+int k = 0, head = 0;
 printf("Number of nodes ");
 scanf("%d", &k);
+printf("Head ");
+scanf("%d", &head);
 
-for (int i = 0; i < k; i++)
+Node* list_ptr = Create_Node (head);
+Node* cur = list_ptr;
+for (int i = 1; i < k; i++)
 {
     int num = 0;
     printf("a = ");
@@ -42,13 +46,13 @@ for (int i = 0; i < k; i++)
 int a = 0;
 printf("Search ");
 scanf("%d", &a);
-
 Node* searches = Search_Node (list_ptr, a);
+if (searches == NULL) printf("~Sorry!There is no such element~\n");
+
 cur = searches;
-if (cur == NULL) printf("shit\n");
-int index = Indexx_Node (cur);
+int index = Indexx_Node (cur, list_ptr);
 if (index != 0)
-    printf("index = %d\n", index+1);
+    printf("index = %d\n", index);
 
 Node* tmp = list_ptr -> next;
 Swap___Node (cur, tmp);
@@ -74,6 +78,11 @@ return list_ptr;
 
 Node* Insert_Node(Node* cur, int value)
 {
+    if (cur == NULL) 
+    {
+	printf ("Error in Insert_Node");
+	return NULL;
+    }
     Node* new_n = (Node*) calloc (1, sizeof(Node));
 
     new_n -> data = value;
@@ -88,8 +97,14 @@ return new_n;
 
 Node* Search_Node (Node* list_ptr, int value)
 {
+    if (list_ptr == NULL) 
+    {
+	printf ("Error in Search_Node");
+	return NULL;
+    }
+    if (list_ptr -> data == value) {return list_ptr;}
     Node* cur = list_ptr;
-
+    
     while(cur != NULL)
     {
         if(cur -> data == value) return cur;
@@ -99,24 +114,29 @@ Node* Search_Node (Node* list_ptr, int value)
 return NULL;
 }
 
-int   Indexx_Node (Node* cur)
+int   Indexx_Node (Node* cur, Node* list_ptr)
 {
-    if (cur == NULL) return 0;
+    if (cur == list_ptr) {return 1;}
+    if (cur == NULL) return -1;
     Node* tmp = cur;
     int counter = 0;
-
+    
     while (cur -> prev != NULL)
     {
         counter ++;
         cur = (cur -> prev);
     }
 if (counter == 0)
-    printf("Sorry!There is no such element\n");
+    printf("Sorry!There is no such element meow\n");
 return counter;
 }
 
 void Printf_Node (Node* list_ptr)
 {
+    if (list_ptr == NULL) 
+    {
+	printf ("Error in Printf_Node");
+    }
     Node* p = list_ptr;
 
     printf("%d  ", p -> data);
@@ -144,8 +164,11 @@ void  Swap___Node (Node* ptr1, Node* ptr2)
 
 void Delete_Node(Node* cur)
 {
+    if (cur == NULL) 
+    {
+	printf ("Error in Delete_Node");
+    }
     (cur -> prev) -> next = (cur -> next);
     (cur -> next) -> prev = (cur -> prev);
 free (cur);
 }
-
