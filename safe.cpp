@@ -249,9 +249,9 @@ void Swap___Node (Node* ptr1, Node* ptr2)
 
         Node* tmp = (Node*) calloc (1, sizeof(Node));
 
-        (tmp -> data) = (ptr1 -> data);
+        (tmp  -> data) = (ptr1 -> data);
         (ptr1 -> data) = (ptr2 -> data);
-        (ptr2 -> data) = (tmp -> data);
+        (ptr2 -> data) = (tmp  -> data);
 
     }
 }
