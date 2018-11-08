@@ -37,14 +37,14 @@ printf("Number of nodes ");
 scanf("%d", &k);
 if (k <= 0)
     {
-        printf("invalid(you) input");
+        printf("invalid input");
         return -1;
     }
 
 printf("Head ");
 if (scanf("%d", &head) != 1)
     {
-        printf("invalid(you) input");
+        printf("invalid input");
         return -1;
     }
 
@@ -59,7 +59,7 @@ int num = 0;
 printf("a = ");
 if (scanf("%d", &num) != 1)
     {
-        printf("invalid(you) input");
+        printf("invalid input");
         return -1;
     }
 cur = Insert_Node(cur, num);
@@ -70,7 +70,7 @@ int a = 0;
 printf("Search ");
 if (scanf("%d", &a) != 1)
     {
-        printf("invalid(you) input");
+        printf("invalid input");
         return -1;
     }
 Node* searches = Search_Node (list_ptr, a);
@@ -103,7 +103,7 @@ return 0;
 int OK_Node(Node* ptr)
 {
     if (ptr == NULL) {printf("ptr \n"); return -1;}
-    if ( ptr -> checksum != ( ((unsigned long long int) (ptr -> next) + (unsigned long long int)(ptr -> prev ) )% 12978 )) {printf("CHKSUM\n"); return -2;}
+    if ( ptr -> checksum != ( ((unsigned long long int) (ptr -> next) + (unsigned long long int)(ptr -> prev ) )% 12978 )){printf("CHKSUM\n"); return -2;}
     if ( ptr -> can1 != can) {printf("can1\n"); return -3;}
     if ( ptr -> can2 != can) {printf("can2\n"); return -4;}
     return 1;
@@ -135,8 +135,8 @@ Node* Insert_Node(Node* cur, int value)
 {
 if (cur == NULL)
 {
-printf ("Error in Insert_Node");
-return NULL;
+    printf ("Error in Insert_Node");
+    return NULL;
 }
 Node* new_n = (Node*) calloc (1, sizeof(Node));
 
@@ -192,7 +192,7 @@ while (cur -> prev != NULL)
         cur = (cur -> prev);
     }
 if (counter == 1)
-printf("Sorry!There is no such element\n");
+    printf("Sorry!There is no such element\n");
 return counter;
 }
 
