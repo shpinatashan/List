@@ -35,8 +35,18 @@ int main()
 int k = 0, head = 0;
 printf("Number of nodes ");
 scanf("%d", &k);
+if (k <= 0)
+    {
+        printf("invalid(you) input");
+        return -1;
+    }
+
 printf("Head ");
-scanf("%d", &head);
+if (scanf("%d", &head) != 1)
+    {
+        printf("invalid(you) input");
+        return -1;
+    }
 
 Node* list_ptr = Create_Node (head);
 
@@ -47,14 +57,22 @@ for (int i = 1; i < k; i++)
 {
 int num = 0;
 printf("a = ");
-scanf("%d", &num);
+if (scanf("%d", &num) != 1)
+    {
+        printf("invalid(you) input");
+        return -1;
+    }
 cur = Insert_Node(cur, num);
 if (OK_Node(cur) < 0) printf ("ERROR insert cur\n");
 }
 
 int a = 0;
 printf("Search ");
-scanf("%d", &a);
+if (scanf("%d", &a) != 1)
+    {
+        printf("invalid(you) input");
+        return -1;
+    }
 Node* searches = Search_Node (list_ptr, a);
 Calculate_CHCKSM(searches);
 if (OK_Node(searches) < 0) printf ("ERROR search\n");
