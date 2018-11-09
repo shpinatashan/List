@@ -70,7 +70,7 @@ for (int i = 1; i < number; i++)
         return -2;
     }
 }
-    //возвращает указатель на узел, в котором введЄнное число
+    //The function returns a ptr to the node with the number you inputted
 int value = 0;
 printf("Search ");
 if (scanf("%d", &value) != 1)
@@ -79,13 +79,13 @@ if (scanf("%d", &value) != 1)
     return -1;
 }
 Node* searches = Search_Node (list_ptr, value);
-    //находим индекс найденного узла
+    //The function finds the index of the found node
 cur = searches;
 int index = Indexx_Node (cur, list_ptr);
 if (index > 0)
     printf("index = %d\n", index-1);
 
-    //Ќайденный узел  ставим на место первого. "ѕервый" затем удал€етс€.
+    //Found node put in place of the first. Then "the first" will be removed
 Node* tmp = list_ptr;
 Swap___Node (cur, tmp);
 
@@ -103,7 +103,7 @@ Printf_Node (list_ptr);
 return 0;
 }
 
-//..................................................................................................
+
 int OK_Node(Node* ptr)
 {
     if (ptr == NULL)
