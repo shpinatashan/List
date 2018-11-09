@@ -27,6 +27,7 @@ void  Swap___Node (Node* ptr1, Node* ptr2);
 int   OK_Node(Node* ptr);
 void  Calculate_CHCKSM(Node* ptr);
 void  Printf_Node (Node* list_ptr);
+void  Delete_List (Node* list_ptr);
 
 int main()
 {
@@ -69,7 +70,7 @@ for (int i = 1; i < number; i++)
         return -2;
     }
 }
-
+    //возвращает указатель на узел, в котором введённое число
 int value = 0;
 printf("Search ");
 if (scanf("%d", &value) != 1)
@@ -77,7 +78,6 @@ if (scanf("%d", &value) != 1)
     printf("invalid input");
     return -1;
 }
-
 Node* searches = Search_Node (list_ptr, value);
     //находим индекс найденного узла
 cur = searches;
@@ -85,7 +85,7 @@ int index = Indexx_Node (cur, list_ptr);
 if (index > 0)
     printf("index = %d\n", index-1);
 
-    //Найденный узел  ставим на место первого. Первый затем удаляется.
+    //Найденный узел  ставим на место первого. "Первый" затем удаляется.
 Node* tmp = list_ptr;
 Swap___Node (cur, tmp);
 
@@ -93,13 +93,17 @@ if (cur == list_ptr)
     list_ptr = cur -> next;
 Delete_single_Node (cur, list_ptr);
 
-
 printf("\nlist: ");
+Printf_Node (list_ptr);
+
+Delete_List(list_ptr);
+printf("\nlist2: ");
 Printf_Node (list_ptr);
 
 return 0;
 }
 
+//..................................................................................................
 int OK_Node(Node* ptr)
 {
     if (ptr == NULL)
@@ -262,6 +266,8 @@ void Printf_Node (Node* list_ptr)
         printf("%d ", p -> data);
         p = p -> next;
     }
+    free(p);
+    p = NULL;
 }
 
 void Swap___Node (Node* ptr1, Node* ptr2)
@@ -311,4 +317,23 @@ void Delete_single_Node(Node* cur, Node* list_ptr)
 
     free (cur);
     cur = NULL;
+}
+
+
+void  Delete_List (Node* list_ptr)
+{
+    if (list_ptr == NULL)
+    {
+        printf ("Error in Delete_List/The list is empty");
+        return;
+    }
+    Node* tmp = list_ptr;
+    while (list_ptr != NULL)
+    {
+        tmp = list_ptr;
+        free(tmp);
+        tmp -> next = NULL;
+        tmp = NULL;
+        list_ptr = list_ptr -> next;
+    }
 }
