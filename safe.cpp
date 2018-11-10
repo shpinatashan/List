@@ -21,18 +21,20 @@ struct Node
 Node* Create_Node (int value);
 Node* Insert_Node (Node* cur, int value);
 Node* Search_Node (Node* cur, int value);
+Node* Ptr_index_Node (Node* list_ptr, int index);
 int   Indexx_Node (Node* cur, Node* list_ptr);
+int   OK_Node (Node* ptr);
 void  Delete_single_Node (Node* cur, Node* list_ptr);
 void  Swap___Node (Node* ptr1, Node* ptr2);
-int   OK_Node(Node* ptr);
-void  Calculate_CHCKSM(Node* ptr);
+void  Calculate_CHCKSM (Node* ptr);
 void  Printf_Node (Node* list_ptr);
 void  Delete_List (Node* list_ptr);
-Node* Ptr_index_Node (Node* list_ptr, int index);
+
 
 
 int main()
 {
+    //creating a list
 int number = 0, head = 0;
 printf("Number of nodes ");
 scanf("%d", &number);
@@ -66,11 +68,6 @@ for (int i = 1; i < number; i++)
         return -1;
     }
     cur = Insert_Node(cur, num);
-    if (cur == NULL)
-    {
-        printf("NULL ptr");
-        return -2;
-    }
 }
     //The function returns a ptr to the node with the number you inputted
 int value = 0;
