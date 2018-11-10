@@ -52,11 +52,6 @@ if (scanf("%d", &head) != 1)
     }
 
 Node* list_ptr = Create_Node (head);
-if (list_ptr == NULL)
-    {
-        printf("NULL ptr");
-        return -2;
-    }
 Node* cur = list_ptr;
 for (int i = 1; i < number; i++)
 {
