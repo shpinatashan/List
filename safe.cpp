@@ -28,6 +28,8 @@ int   OK_Node(Node* ptr);
 void  Calculate_CHCKSM(Node* ptr);
 void  Printf_Node (Node* list_ptr);
 void  Delete_List (Node* list_ptr);
+Node* Ptr_index_Node (Node* list_ptr, int index);
+
 
 int main()
 {
@@ -79,16 +81,26 @@ if (scanf("%d", &value) != 1)
     return -1;
 }
 Node* searches = Search_Node (list_ptr, value);
+
     //The function finds the index of the found node
 cur = searches;
 int index = Indexx_Node (cur, list_ptr);
 if (index > 0)
     printf("index = %d\n", index-1);
 
-    //Found node put in place of the first. Then "the first" will be removed
-Node* tmp = list_ptr;
-Swap___Node (cur, tmp);
+    //swap two nodes.Find node by index
+printf("enter two indexes\n");
+int ind1 = 0, ind2 = 0;
+scanf("%d %d", &ind1, &ind2);
+Node* pr1 = Ptr_index_Node(list_ptr, ind1);
+Node* pr2 = Ptr_index_Node(list_ptr, ind2);
+Swap___Node (pr1, pr2);
 
+    ////delete single node.Find node by index
+printf("enter the index for the node to be removed\n");
+int indel;
+scanf("%d", &indel);
+cur = Ptr_index_Node(list_ptr, indel);
 if (cur == list_ptr)
     list_ptr = cur -> next;
 Delete_single_Node (cur, list_ptr);
@@ -97,8 +109,6 @@ printf("\nlist: ");
 Printf_Node (list_ptr);
 
 Delete_List(list_ptr);
-printf("\nlist2: ");
-Printf_Node (list_ptr);
 
 return 0;
 }
@@ -136,7 +146,7 @@ void Calculate_CHCKSM(Node* ptr)
 {
     if (ptr == NULL)
     {
-        printf("NULL ptr");
+        printf("NULL ptr chksum ");
        return;
     }
 
@@ -336,4 +346,22 @@ void  Delete_List (Node* list_ptr)
         tmp = NULL;
         list_ptr = list_ptr -> next;
     }
+}
+
+
+Node* Ptr_index_Node (Node* list_ptr, int index)
+{
+    if (OK_Node(list_ptr) < 0)
+    {
+        printf ("Error in Ptr_index_Node");
+        return NULL;
+    }
+
+    for(int i = 0; i < index; i++)
+    {
+        list_ptr = list_ptr -> next;
+    }
+    Calculate_CHCKSM(list_ptr);
+
+return list_ptr;
 }
