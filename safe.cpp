@@ -24,7 +24,7 @@ Node* Search_Node (Node* cur, int value);
 Node* Ptr_index_Node (Node* list_ptr, int index);
 int   Indexx_Node (Node* cur, Node* list_ptr);
 int   OK_Node (Node* ptr);
-void  Delete_single_Node (Node* cur, Node* list_ptr);
+void  Delete_single_Node (Node* cur);
 void  Swap___Node (Node* ptr1, Node* ptr2);
 void  Calculate_CHCKSM (Node* ptr);
 void  Printf_Node (Node* list_ptr);
@@ -95,7 +95,7 @@ scanf("%d", &indel);
 cur = Ptr_index_Node(list_ptr, indel);
 if (cur == list_ptr)
     list_ptr = cur -> next;
-Delete_single_Node (cur, list_ptr);
+Delete_single_Node (cur);
 
 printf("\nlist: ");
 Printf_Node (list_ptr);
@@ -290,7 +290,7 @@ void Swap___Node (Node* ptr1, Node* ptr2)
     }
 }
 
-void Delete_single_Node(Node* cur, Node* list_ptr)
+void Delete_single_Node(Node* cur)
 {
     if (OK_Node(cur) < 0)
     {
@@ -301,17 +301,25 @@ void Delete_single_Node(Node* cur, Node* list_ptr)
     if (cur -> prev == NULL)
     {
         if (cur -> next == NULL)
-        return ;
+        {
+            free (cur);
+            cur = NULL;
+            return ;
+        }
     }
 
     if (cur -> prev == NULL)
     {
         (cur -> next) -> prev = NULL;
+        free (cur);
+        cur = NULL;
         return;
     }
     if (cur -> next == NULL)
     {
         (cur -> prev) -> next = NULL;
+        free (cur);
+        cur = NULL;
         return;
     }
     (cur -> prev) -> next = (cur -> next);
@@ -333,10 +341,10 @@ void  Delete_List (Node* list_ptr)
     while (list_ptr != NULL)
     {
         tmp = list_ptr;
+        list_ptr = list_ptr -> next;
         free(tmp);
         tmp -> next = NULL;
         tmp = NULL;
-        list_ptr = list_ptr -> next;
     }
 }
 
