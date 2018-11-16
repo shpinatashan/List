@@ -1,3 +1,5 @@
+//#define List_Fast
+
 #include "list.h"
 
 int main()
